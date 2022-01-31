@@ -10,6 +10,7 @@ import {
 import { db } from "../../firebase";
 import { Link } from "react-router-dom";
 import UpdateVoter from "./UpdateVoter";
+import "./css/style.css";
 
 export default function AllVoters() {
   const [voters, setVoters] = useState();
@@ -50,44 +51,103 @@ export default function AllVoters() {
       {flag && <UpdateVoter data={data} id={id} handleflag={setFlag} />}
       {voters ? (
         voters.map((item, index) => (
-          <div>
-            <p key={`${item.id}1`}>
-              voterId :- {JSON.stringify(item.data.voterId)}
-            </p>
-            <p key={`${item.id}2`}>name :- {JSON.stringify(item.data.name)}</p>
-            <p key={`${item.id}3`}>
-              headName :- {JSON.stringify(item.data.headName)}
-            </p>
-            <p key={`${item.id}4`}>
-              address :- {JSON.stringify(item.data.address)}
-            </p>
-            <p key={`${item.id}5`}>age :- {JSON.stringify(item.data.age)}</p>
-            <p key={`${item.id}6`}>sex :- {JSON.stringify(item.data.sex)}</p>
-            <p key={`${item.id}7`}>
-              street :- {JSON.stringify(item.data.street)}
-            </p>
-            <p key={`${item.id}8`}>
-              phone :- {JSON.stringify(item.data.phone)}
-            </p>
-            <p key={`${item.id}9`}>
-              money :- {JSON.stringify(item.data.money)}
-            </p>
-            <p key={`${item.id}0`}>
-              visited :- {JSON.stringify(item.data.visited)}
-            </p>
-            {/* <Link to={"addvoter"}>Add</Link> */}
-            <button onClick={() => handleUpdate(item.data, item.id)}>
-              edit
-            </button>
-            <button
-              onClick={() => {
-                handleDelete(item.id);
-              }}
-            >
-              delete
-            </button>
-            <hr />
-          </div>
+          <div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="text-center"> 
+                    <div class="row box-container">
+                        <div class="col-lg-6">
+                            <p>
+                                <b>Voter Id : </b>
+                                <span>{JSON.stringify(item.data.voterId)}</span>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p>
+                                <b>Name : </b>
+                                <span>{JSON.stringify(item.data.name)}</span>
+                            </p>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p>
+                                <b>Age : </b>
+                                <span>{JSON.stringify(item.data.age)}</span>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p>
+                                <b>Sex : </b>
+                                <span>{JSON.stringify(item.data.sex)}</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p>
+                                <b>Street : </b>
+                                <span>{JSON.stringify(item.data.street)}</span>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p>
+                                <b>Phone Number : </b>
+                                <span>{JSON.stringify(item.data.phone)}</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <p>
+                            <b>Father/Husband Name :</b>
+                            <span>{JSON.stringify(item.data.headName)}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <p>
+                            <b>Address : </b>
+                            <span>{JSON.stringify(item.data.address)}</span>
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p>
+                                <b>Checked : </b>
+                                <span>{JSON.stringify(item.data.checked)}</span>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p>
+                                <b>Visited : </b>
+                                <span>{JSON.stringify(item.data.visited)}</span>
+                            </p>
+                        </div>
+                    </div>
+                   
+                    <div class="buttons"> 
+                        <button onClick={() => handleUpdate(item.data, item.id)} class="btn btn-dark px-4">
+                            update
+                        </button> 
+                        <button  onClick={() => {
+                            handleDelete(item.id);
+                          }} class="btn btn-danger px-4 ms-3">
+                            Delete
+                        </button> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         ))
       ) : (
         <p>loading</p>
