@@ -2,7 +2,7 @@ import {useState,useEffect} from 'react'
 import { doc, updateDoc } from "firebase/firestore";
 import {db} from '../../firebase'
 
-export default function UpdateVoter({data,id}) {
+export default function UpdateVoter({data={},id='',handleflag=()=>{}}) {
 
     const [voterId,setVoterId]=useState(data.voterId ||'');
     const [name,setName]=useState(data.name ||'');
@@ -32,9 +32,11 @@ export default function UpdateVoter({data,id}) {
             money:money,
             visited:visited,
         })
+        handleflag(false);
         } catch (err) {
         alert(err)
-        }   
+        handleflag(false);
+        }
     }
 
 
@@ -103,6 +105,7 @@ export default function UpdateVoter({data,id}) {
                 onChange={(e) => setAddress(e.target.value)}
                 placeholder='Enter Voter Address'
                 value={address}></textarea>
+                <button type='button' onClick={()=>handleflag(false)}>cancel</button>
                 <button type='submit'>Done</button>
             </form> 
         </div>

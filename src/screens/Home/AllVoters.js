@@ -2,9 +2,13 @@ import {useState, useEffect} from 'react'
 import {collection, query, orderBy, onSnapshot,doc, deleteDoc} from "firebase/firestore"
 import {db} from '../../firebase'
 import { Link } from 'react-router-dom';
+import UpdateVoter from './UpdateVoter';
 
 export default function AllVoters() {
     const [voters,setVoters]=useState();
+    const [data,setData]=useState();
+    const[id,setId]=useState();
+    const [flag,setFlag]=useState(false);
     /* function to get all tasks from firestore in realtime */ 
     useEffect(() => {
       const voterRef = query(collection(db, 'voter'), orderBy('created', 'desc'))
@@ -26,8 +30,15 @@ export default function AllVoters() {
       }
     }
 
+    const handleUpdate=(data,id)=>{
+      setData(data);
+      setId(id);
+      setFlag(true);
+    }
+
     return (
       <div>
+      {flag&&<UpdateVoter data={data} id={id} handleflag={setFlag} />}
         {voters?voters.map((item,index)=>(<div>
         <p key={`${item.id}1`}>voterId :- {JSON.stringify(item.data.voterId)}</p>
         <p key={`${item.id}2`}>name :- {JSON.stringify(item.data.name)}</p>
@@ -40,8 +51,8 @@ export default function AllVoters() {
         <p key={`${item.id}9`}>money :- {JSON.stringify(item.data.money)}</p>
         <p key={`${item.id}0`}>visited :- {JSON.stringify(item.data.visited)}</p>
         {/* <Link to={"addvoter"}>Add</Link> */}
-        <button onClick={()=>console.log(item.id,JSON.stringify(item.data))} >edit</button>
-        <button onClick={()=>{"return confirm('Are you sure you want to search Google?')"}} >delete</button>
+        <button onClick={()=>handleUpdate(item.data,item.id)} >edit</button>
+        <button onClick={()=>{handleDelete(item.id)}} >delete</button>
         <hr/>
         </div>)):<p>loading</p>}
       </div>
