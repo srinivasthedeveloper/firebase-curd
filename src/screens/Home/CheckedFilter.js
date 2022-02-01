@@ -62,7 +62,10 @@ const CheckedFilter = () => {
 
   return (
     <div>
-      <form class="mb-5" id="contactForm" name="addTask" onSubmit={handleReset}>
+      <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+      <form class="" id="contactForm" name="addTask" onSubmit={handleReset}>
         <div class="row">
           <div class="col-md-12 form-group mb-3">
             <label for="" class="col-form-label">
@@ -89,7 +92,7 @@ const CheckedFilter = () => {
             </select>
           </div>
         </div>
-        <div class="row">
+        <div class="row"> 
           <div class="col-md-12 form-group mb-3">
             <label for="" class="col-form-label">
               Enter Voter family mobile number *
@@ -161,6 +164,9 @@ const CheckedFilter = () => {
           </div>
         </div>
       </form>
+
+        </div>
+      </div>
       <AllVoters DATA={filter || voters} />
     </div>
   );
