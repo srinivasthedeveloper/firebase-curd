@@ -48,8 +48,8 @@ export default function AddVoter() {
             <form
               class="mb-5"
               onSubmit={handleSubmit}
-              id="contactForm"
-              name="addTask"
+              id="addvoter"
+              name="addvoter"
             >
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
