@@ -1,17 +1,10 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-import AddVoter from './screens/Home/AddVoter';
-import AllVoter from './screens/Home/AllVoters';
-import UpdateVoter from './screens/Home/UpdateVoter';
-
+import AddVoter from "./screens/Home/AddVoter";
+import AllVoter from "./screens/Home/AllVoters";
+import UpdateVoter from "./screens/Home/UpdateVoter";
 
 function App() {
-
   return (
     <Router>
       <div>

@@ -1,109 +1,219 @@
-import React from 'react'
-import {useState} from 'react'
-import {db} from '../../firebase'
-import {collection, addDoc, Timestamp} from 'firebase/firestore'
+import React from "react";
+import { useState } from "react";
+import { db } from "../../firebase";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+import "./css/style.css";
 
 export default function AddVoter() {
-    const [voterId,setVoterId]=useState('');
-    const [name,setName]=useState('');
-    const [headName,setHeadName]=useState('');
-    const [address,setAddress]=useState('');
-    const [age,setAge]=useState('');
-    const [sex,setSex]=useState('');
-    const [street,setStreet]=useState('');
-    const [phone,setPhone]=useState('');
-    const [money,setMoney]=useState('');
-    const [visited,setVisited]=useState(false);
+  const [voterId, setVoterId] = useState("");
+  const [name, setName] = useState("");
+  const [headName, setHeadName] = useState("");
+  const [address, setAddress] = useState("");
+  const [age, setAge] = useState("");
+  const [sex, setSex] = useState("");
+  const [street, setStreet] = useState("");
+  const [phone, setPhone] = useState("");
+  const [checked, setChecked] = useState("");
+  const [visited, setVisited] = useState(false);
 
-    /* function to add new task to firestore */
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        try {
-        await addDoc(collection(db, 'voter'), {
-            voterId: voterId,
-            name: name,
-            headName: headName,
-            address: address,
-            age: age,
-            sex: sex,
-            street: street,
-            phone:phone,
-            money:money,
-            visited:visited,
-            created: Timestamp.now()
-        })
-        } catch (err) {
-        alert(err)
-        }
+  /* function to add new task to firestore */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await addDoc(collection(db, "voter"), {
+        voterId: voterId,
+        name: name,
+        headName: headName,
+        address: address,
+        age: age,
+        sex: sex,
+        street: street,
+        phone: phone,
+        checked: checked,
+        visited: visited,
+        created: Timestamp.now(),
+      });
+    } catch (err) {
+      alert(err);
     }
+  };
 
   return (
-    <div style={{display:'grid',placeItems:'center',height:'100vh'}}>
-        <form onSubmit={handleSubmit} style={{display:'flex',flexDirection:'column',width:'70vw'}} name='addTask'>
-            <input 
-            type='text' 
-            name='Voter Id' 
-            onChange={(e) => setVoterId(e.target.value)} 
-            value={voterId}
-            placeholder='Enter Voter Id'/>
-            <input 
-            type='text' 
-            name='Voter Name' 
-            onChange={(e) => setName(e.target.value)} 
-            value={name}
-            placeholder='Enter Voter name'/>
-            <input 
-            type='text' 
-            name='head name' 
-            onChange={(e) => setHeadName(e.target.value)} 
-            value={headName}
-            placeholder='Enter Father/Husband name'/>
-            <input 
-            type='numeric' 
-            name='age'
-            onChange={(e) => setAge(e.target.value)} 
-            value={age}
-            placeholder='Enter Voter Age'/>
-            <input 
-            type='text' 
-            name='sex' 
-            onChange={(e) => setSex(e.target.value)} 
-            value={sex}
-            placeholder='Enter Voter Sex'/>
-            <input 
-            type='text' 
-            name='street' 
-            onChange={(e) => setStreet(e.target.value)} 
-            value={street}
-            placeholder='Enter Voter street'/>
-            <input 
-            type='decimal' 
-            name='money' 
-            onChange={(e) => setMoney(e.target.value)} 
-            value={money}
-            placeholder='Enter money provided'/>
-            <input 
-            type='tel' 
-            name='phone' 
-            onChange={(e) => setPhone(e.target.value)} 
-            value={phone}
-            placeholder='Enter Voter mobile number'/>
-            <div style={{display:'flex'}}>
-            <input 
-            type='checkbox' 
-            name='visited' 
-            id="visitBox"
-            onChange={(e) => {setVisited(e.target.checked);}} 
-            checked={visited}
-            defaultChecked={false}/>
-            <label htmlFor='visitBox'>Visited</label>
-            </div>
-            <textarea 
-            onChange={(e) => setAddress(e.target.value)}
-            placeholder='Enter Voter Address'
-            value={address}></textarea>
-            <button type='submit'>Done</button>
-        </form> 
+    <div>
+      
+      <div class="row align-items-stretch justify-content-center no-gutters">
+        <div class="col-lg-8">
+          <div class="form h-100 contact-wrap p-5">
+            <h3 class="text-center">Add Voter Form</h3>
+            <form
+              class="mb-5"
+              onSubmit={handleSubmit}
+              id="contactForm"
+              name="addTask"
+            >
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">
+                    Voter Id *
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="Voter Id"
+                    onChange={(e) => setVoterId(e.target.value)}
+                    value={voterId}
+                    placeholder="Enter Voter Id"
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">
+                    Voter Name *
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="Voter Name"
+                    onChange={(e) => setName(e.target.value)}
+                    value={name}
+                    placeholder="Enter Voter name"
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">
+                    Enter Father/Husband name *
+                  </label>
+                  <input
+                    type="text"
+                    name="head name"
+                    onChange={(e) => setHeadName(e.target.value)}
+                    value={headName}
+                    placeholder="Enter Father/Husband name"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">
+                    Enter Voter Age *
+                  </label>
+                  <input
+                    type="numeric"
+                    name="age"
+                    onChange={(e) => setAge(e.target.value)}
+                    value={age}
+                    placeholder="Enter Voter Age"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">
+                    Enter Voter Sex *
+                  </label>
+                  <input
+                    type="text"
+                    name="sex"
+                    onChange={(e) => setSex(e.target.value)}
+                    value={sex}
+                    placeholder="Enter Voter Sex"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">
+                    Enter Voter mobile number *
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    onChange={(e) => setPhone(e.target.value)}
+                    value={phone}
+                    placeholder="Enter Voter mobile number"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+
+              <div class="row mb-5">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="address" class="col-form-label">
+                    Enter Voter Address
+                  </label>
+                  <textarea
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder="Enter Voter Address"
+                    value={address}
+                    class="form-control"
+                    cols="30"
+                    rows="4"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3"></div>
+                <div style={{ display: "flex" }} class="form-group mb-3">
+                  <input
+                    type="checkbox"
+                    name="checked"
+                    onChange={(e) => setChecked(e.target.value)}
+                    value={checked}
+                    placeholder="Enter checked provided"
+                    class="form-check-input"
+                  />
+                  <label for="" class="form-check-label">
+                    Checked *
+                  </label>
+                </div>
+                <div class="col-md-4"></div>
+                <div style={{ display: "flex" }} class="form-group mb-3">
+                  <input
+                    type="checkbox"
+                    name="visited"
+                    id="visitBox"
+                    onChange={(e) => {
+                      setVisited(e.target.checked);
+                    }}
+                    checked={visited}
+                    defaultChecked={false}
+                    class="form-check-input"
+                  />
+                  <label for="" class="form-check-label">
+                    Visited *
+                  </label>
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col"></div>
+              </div>
+
+              <div class="row justify-content-center">
+                <div class="col-md-5 form-group text-center">
+                  <input
+                    type="submit"
+                    value="Done"
+                    class="btn btn-block btn-primary rounded-0 py-2 px-4"
+                  />
+                  <span class="submitting"></span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
