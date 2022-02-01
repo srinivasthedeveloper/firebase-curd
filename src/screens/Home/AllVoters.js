@@ -12,13 +12,22 @@ import { Link } from "react-router-dom";
 import UpdateVoter from "./UpdateVoter";
 import "./css/style.css";
 
-export default function AllVoters() {
+export default function AllVoters({DATA=null}) {
   const [voters, setVoters] = useState();
   const [data, setData] = useState();
   const [id, setId] = useState();
   const [flag, setFlag] = useState(false);
-  /* function to get all tasks from firestore in realtime */
   useEffect(() => {
+    if(DATA){
+      setVoters(DATA);
+    }
+    else{
+    getVoters();
+    }
+  }, [DATA,voters]);
+
+  /* function to get all tasks from firestore in realtime */
+  const getVoters=()=>{
     const voterRef = query(collection(db, "voter"), orderBy("created", "desc"));
     onSnapshot(voterRef, (snapshot) => {
       setVoters(
@@ -28,7 +37,7 @@ export default function AllVoters() {
         }))
       );
     });
-  }, []);
+  }
 
   /* function to delete a document from firstore */
   const handleDelete = async (id) => {
@@ -49,6 +58,7 @@ export default function AllVoters() {
   return (
     <div>
       {flag && <UpdateVoter data={data} id={id} handleflag={setFlag} />}
+
       {voters ? (
         voters.map((item, index) => (
           <div class="container mt-5">
@@ -106,14 +116,6 @@ export default function AllVoters() {
                         <p>
                             <b>Father/Husband Name :</b>
                             <span>{JSON.stringify(item.data.headName)}</span>
-                        </p>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col">
-                        <p>
-                            <b>Address : </b>
-                            <span>{JSON.stringify(item.data.address)}</span>
                         </p>
                       </div>
                     </div>

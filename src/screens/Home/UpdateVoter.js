@@ -11,7 +11,6 @@ export default function UpdateVoter({
   const [voterId, setVoterId] = useState(data.voterId || "");
   const [name, setName] = useState(data.name || "");
   const [headName, setHeadName] = useState(data.headName || "");
-  const [address, setAddress] = useState(data.address || "");
   const [age, setAge] = useState(data.age || "");
   const [sex, setSex] = useState(data.sex || "");
   const [street, setStreet] = useState(data.street || "");
@@ -28,7 +27,6 @@ export default function UpdateVoter({
         voterId: voterId,
         name: name,
         headName: headName,
-        address: address,
         age: age,
         sex: sex,
         street: street,
@@ -125,62 +123,47 @@ export default function UpdateVoter({
                   <label for="" class="col-form-label">
                     Enter Voter Sex *
                   </label>
-                  <input
-                    type="text"
-                    name="sex"
-                    onChange={(e) => setSex(e.target.value)}
-                    value={sex}
-                    placeholder="Enter Voter Sex"
-                    class="form-control"
-                  />
+                  <select class="form-control" onChange={(e) => setSex(e.target.value)} value={sex}>
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                    <option value="others">others</option>
+                  </select>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                    Enter Voter street *
+                    Enter Voter Street *
                   </label>
-                  <input
-                    type="text"
-                    name="street"
-                    onChange={(e) => setStreet(e.target.value)}
-                    value={street}
-                    placeholder="Enter Voter street"
-                    class="form-control"
-                  />
+                  <select class="form-control" onChange={(e) => setStreet(e.target.value)} value={street}>
+                    <option value="1">கந்தசாமி சந்து</option>
+                    <option value="2">கரிகால் சோழன் வீதி</option>
+                    <option value="3">ஆரோக்கியநாதர் வீதி</option>
+                    <option value="4">குப்புசாமி வீதி</option>
+                    <option value="5">வ.உ.சி வீதி</option>
+                    <option value="6">கட்டபொம்மன் வீதி</option>
+                    <option value="7">ஆறுமுகம் வீதி</option>
+                    <option value="8">முத்துசாமி வீதி</option>
+                    <option value="9">குப்பாண்டவர் வீதி</option>
+                    <option value="0">சுப்ரமணியன் வீதி</option>
+                  </select>
                 </div>
               </div>
-
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                    Enter Voter mobile number *
+                    Enter Voter family mobile number *
                   </label>
                   <input
                     type="tel"
                     name="phone"
                     onChange={(e) => setPhone(e.target.value)}
                     value={phone}
-                    placeholder="Enter Voter mobile number"
+                    placeholder="example(6700000000)"
                     class="form-control"
+                    required
                   />
-                </div>
-              </div>
-
-              <div class="row mb-5">
-                <div class="col-md-12 form-group mb-3">
-                  <label for="address" class="col-form-label">
-                    Enter Voter Address
-                  </label>
-                  <textarea
-                    onChange={(e) => setAddress(e.target.value)}
-                    placeholder="Enter Voter Address"
-                    value={address}
-                    class="form-control"
-                    cols="30"
-                    rows="4"
-                  ></textarea>
                 </div>
               </div>
 
@@ -190,7 +173,7 @@ export default function UpdateVoter({
                   <input
                     type="checkbox"
                     name="checked"
-                    onChange={(e) => setChecked(e.target.value)}
+                    onChange={(e) => setChecked(e.target.checked)}
                     value={checked}
                     placeholder="Enter checked provided"
                     class="form-check-input"
@@ -227,7 +210,7 @@ export default function UpdateVoter({
                   <button
                     type="button"
                     onClick={() => handleflag(false)}
-                    class="btn btn-block btn-primary rounded-0"
+                    class="btn btn-block btn-danger rounded-0"
                   >
                     Cancel
                   </button>
