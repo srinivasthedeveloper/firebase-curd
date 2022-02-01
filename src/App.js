@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import AddVoter from "./screens/Home/AddVoter";
 import AllVoter from "./screens/Home/AllVoters";
+import CheckedFilter from "./screens/Home/CheckedFilter";
 import UpdateVoter from "./screens/Home/UpdateVoter";
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
             <li>
               <Link to="/add">Add</Link>
             </li>
+            <li>
+              <Link to="/checked">filter</Link>
+            </li>
           </ul>
         </nav>
 
@@ -24,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<AllVoter />} />
           <Route path="/add" element={<AddVoter />} />
+          <Route path="/checked" element={<CheckedFilter />} />
           {/* <Route path="/edit">
             <UpdateVoter 
               data={{"age":"55",

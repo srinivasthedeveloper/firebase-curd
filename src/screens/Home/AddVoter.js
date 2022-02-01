@@ -8,13 +8,25 @@ export default function AddVoter() {
   const [voterId, setVoterId] = useState("");
   const [name, setName] = useState("");
   const [headName, setHeadName] = useState("");
-  const [address, setAddress] = useState("");
   const [age, setAge] = useState("");
-  const [sex, setSex] = useState("");
-  const [street, setStreet] = useState("");
+  const [sex, setSex] = useState("male");
+  const [street, setStreet] = useState("1");
   const [phone, setPhone] = useState("");
-  const [checked, setChecked] = useState("");
+  const [checked, setChecked] = useState(false);
   const [visited, setVisited] = useState(false);
+
+  /* function to clear fields */
+  const clearFields = () => {
+    setVoterId("");
+    setName("");
+    setHeadName("");
+    setAge("");
+    setSex("");
+    setStreet("");
+    setPhone("");
+    setChecked("");
+    setVisited("");
+  };
 
   /* function to add new task to firestore */
   const handleSubmit = async (e) => {
@@ -24,7 +36,6 @@ export default function AddVoter() {
         voterId: voterId,
         name: name,
         headName: headName,
-        address: address,
         age: age,
         sex: sex,
         street: street,
@@ -33,6 +44,8 @@ export default function AddVoter() {
         visited: visited,
         created: Timestamp.now(),
       });
+      clearFields();
+      alert("submitted");
     } catch (err) {
       alert(err);
     }
@@ -40,7 +53,6 @@ export default function AddVoter() {
 
   return (
     <div>
-      
       <div class="row align-items-stretch justify-content-center no-gutters">
         <div class="col-lg-8">
           <div class="form h-100 contact-wrap p-5">
@@ -63,6 +75,7 @@ export default function AddVoter() {
                     onChange={(e) => setVoterId(e.target.value)}
                     value={voterId}
                     placeholder="Enter Voter Id"
+                    required
                   />
                 </div>
               </div>
@@ -79,6 +92,7 @@ export default function AddVoter() {
                     onChange={(e) => setName(e.target.value)}
                     value={name}
                     placeholder="Enter Voter name"
+                    required
                   />
                 </div>
               </div>
@@ -95,6 +109,7 @@ export default function AddVoter() {
                     value={headName}
                     placeholder="Enter Father/Husband name"
                     class="form-control"
+                    required
                   />
                 </div>
               </div>
@@ -105,12 +120,13 @@ export default function AddVoter() {
                     Enter Voter Age *
                   </label>
                   <input
-                    type="numeric"
+                    type="number"
                     name="age"
                     onChange={(e) => setAge(e.target.value)}
                     value={age}
                     placeholder="Enter Voter Age"
                     class="form-control"
+                    required
                   />
                 </div>
               </div>
@@ -120,55 +136,57 @@ export default function AddVoter() {
                   <label for="" class="col-form-label">
                     Enter Voter Sex *
                   </label>
-                  <input
-                    type="text"
-                    name="sex"
-                    onChange={(e) => setSex(e.target.value)}
-                    value={sex}
-                    placeholder="Enter Voter Sex"
-                    class="form-control"
-                  />
+                  <select class="form-control" onChange={(e) => setSex(e.target.value)} value={sex}>
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                    <option value="others">others</option>
+                  </select>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                    Enter Voter mobile number *
+                    Enter Voter Street *
+                  </label>
+                  <select class="form-control" onChange={(e) => setStreet(e.target.value)} value={street}>
+                    <option value="1">கந்தசாமி சந்து</option>
+                    <option value="2">கரிகால் சோழன் வீதி</option>
+                    <option value="3">ஆரோக்கியநாதர் வீதி</option>
+                    <option value="4">குப்புசாமி வீதி</option>
+                    <option value="5">வ.உ.சி வீதி</option>
+                    <option value="6">கட்டபொம்மன் வீதி</option>
+                    <option value="7">ஆறுமுகம் வீதி</option>
+                    <option value="8">முத்துசாமி வீதி</option>
+                    <option value="9">குப்பாண்டவர் வீதி</option>
+                    <option value="0">சுப்ரமணியன் வீதி</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">
+                    Enter Voter family mobile number *
                   </label>
                   <input
                     type="tel"
                     name="phone"
                     onChange={(e) => setPhone(e.target.value)}
                     value={phone}
-                    placeholder="Enter Voter mobile number"
+                    placeholder="example(6700000000)"
                     class="form-control"
+                    required
                   />
                 </div>
               </div>
 
-              <div class="row mb-5">
-                <div class="col-md-12 form-group mb-3">
-                  <label for="address" class="col-form-label">
-                    Enter Voter Address
-                  </label>
-                  <textarea
-                    onChange={(e) => setAddress(e.target.value)}
-                    placeholder="Enter Voter Address"
-                    value={address}
-                    class="form-control"
-                    cols="30"
-                    rows="4"
-                  ></textarea>
-                </div>
-              </div>
               <div class="row">
                 <div class="col-md-3"></div>
                 <div style={{ display: "flex" }} class="form-group mb-3">
                   <input
                     type="checkbox"
                     name="checked"
-                    onChange={(e) => setChecked(e.target.value)}
+                    onChange={(e) => setChecked(e.target.checked)}
                     value={checked}
                     placeholder="Enter checked provided"
                     class="form-check-input"
