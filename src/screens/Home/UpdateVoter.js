@@ -51,8 +51,8 @@ export default function UpdateVoter({
             <form
               class="mb-5"
               onSubmit={handleUpdate}
-              id="contactForm"
-              name="addTask"
+              id="addvoter"
+              name="addvoter"
             >
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
