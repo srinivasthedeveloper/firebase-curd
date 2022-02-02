@@ -9,7 +9,7 @@ export default function AddVoter() {
   const [name, setName] = useState("");
   const [headName, setHeadName] = useState("");
   const [age, setAge] = useState("");
-  const [sex, setSex] = useState("male");
+  const [sex, setSex] = useState("ஆண்");
   const [street, setStreet] = useState("1");
   const [phone, setPhone] = useState("");
   const [checked, setChecked] = useState(false);
@@ -45,7 +45,7 @@ export default function AddVoter() {
         created: Timestamp.now(),
       });
       clearFields();
-      alert("submitted");
+      alert("submitted சமர்ப்பிக்கப்பட்டது");
     } catch (err) {
       alert(err);
     }
@@ -66,7 +66,7 @@ export default function AddVoter() {
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                    Voter Id *
+                  வாக்காளர் எண் *
                   </label>
                   <input
                     type="text"
@@ -83,7 +83,7 @@ export default function AddVoter() {
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                    Voter Name *
+                  வாக்காளர் பெயர் *
                   </label>
                   <input
                     type="text"
@@ -100,7 +100,7 @@ export default function AddVoter() {
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                    Enter Father/Husband name *
+                  குடும்ப தலைவரின் பெயர் *
                   </label>
                   <input
                     type="text"
@@ -117,7 +117,7 @@ export default function AddVoter() {
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                    Enter Voter Age *
+                  வாக்காளர் வயது *
                   </label>
                   <input
                     type="number"
@@ -134,12 +134,12 @@ export default function AddVoter() {
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                    Enter Voter Sex *
+                  வாக்காளர் பாலினம் *
                   </label>
                   <select class="form-control" onChange={(e) => setSex(e.target.value)} value={sex}>
-                    <option value="male">male</option>
-                    <option value="female">female</option>
-                    <option value="others">others</option>
+                    <option value="ஆண்">ஆண்</option>
+                    <option value="பெண்">பெண்</option>
+                    <option value="மற்றவை">மற்றவை</option>
                   </select>
                 </div>
               </div>
@@ -147,33 +147,33 @@ export default function AddVoter() {
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                    Enter Voter Street *
+                  வாக்காளர் தெரு *
                   </label>
                   <select class="form-control" onChange={(e) => setStreet(e.target.value)} value={street}>
-                    <option value="1">கந்தசாமி சந்து</option>
-                    <option value="2">கரிகால் சோழன் வீதி</option>
-                    <option value="3">ஆரோக்கியநாதர் வீதி</option>
-                    <option value="4">குப்புசாமி வீதி</option>
-                    <option value="5">வ.உ.சி வீதி</option>
-                    <option value="6">கட்டபொம்மன் வீதி</option>
-                    <option value="7">ஆறுமுகம் வீதி</option>
-                    <option value="8">முத்துசாமி வீதி</option>
-                    <option value="9">குப்பாண்டவர் வீதி</option>
-                    <option value="0">சுப்ரமணியன் வீதி</option>
+                  <option value="0">கந்தசாமி சந்து</option>
+                  <option value="1">கரிகால் சோழன் வீதி</option>
+                  <option value="2">ஆரோக்கியநாதர் வீதி</option>
+                  <option value="3">குப்புசாமி வீதி</option>
+                  <option value="4">வ.உ.சி வீதி</option>
+                  <option value="5">கட்டபொம்மன் வீதி</option>
+                  <option value="6">ஆறுமுகம் வீதி</option>
+                  <option value="7">முத்துசாமி வீதி</option>
+                  <option value="8">குப்பாண்டவர் வீதி</option>
+                  <option value="9">சுப்ரமணியன் வீதி</option>
                   </select>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                    Enter Voter family mobile number *
+                  வாக்காளர் குடும்ப எண் *
                   </label>
                   <input
-                    type="tel"
+                    type="number"
                     name="phone"
                     onChange={(e) => setPhone(e.target.value)}
                     value={phone}
-                    placeholder="example(6700000000)"
+                    placeholder="Enter Voter family number"
                     class="form-control"
                     required
                   />
@@ -192,7 +192,7 @@ export default function AddVoter() {
                     class="form-check-input"
                   />
                   <label for="" class="form-check-label">
-                    Checked *
+                  வழங்கியுள்ளது *
                   </label>
                 </div>
                 <div class="col-md-4"></div>
@@ -209,7 +209,7 @@ export default function AddVoter() {
                     class="form-check-input"
                   />
                   <label for="" class="form-check-label">
-                    Visited *
+                  பார்வையிட்டது *
                   </label>
                 </div>
               </div>
