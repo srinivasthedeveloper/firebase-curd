@@ -2,50 +2,28 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import AddVoter from "./screens/Home/AddVoter";
 import AllVoter from "./screens/Home/AllVoters";
-import CheckedFilter from "./screens/Home/CheckedFilter";
-import UpdateVoter from "./screens/Home/UpdateVoter";
+import CheckedFilter from "./screens/Home/Filter";
+
+import {Navbar,Nav,Container} from 'react-bootstrap'
 
 function App() {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/add">Add</Link>
-            </li>
-            <li>
-              <Link to="/checked">filter</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+     <Navbar bg="dark" variant="dark">
+    <Container>
+    <Navbar.Brand as={Link} to="/" >My Voters</Navbar.Brand>
+    <Nav className="me-auto">
+      <Nav.Link as={Link} to="/" >Home</Nav.Link>
+      <Nav.Link as={Link} to="/add" >Add</Nav.Link>
+      <Nav.Link as={Link} to="/filter" >Filter</Nav.Link>
+    </Nav>
+    </Container>
+  </Navbar>
         <Routes>
           <Route path="/" element={<AllVoter />} />
           <Route path="/add" element={<AddVoter />} />
-          <Route path="/checked" element={<CheckedFilter />} />
-          {/* <Route path="/edit">
-            <UpdateVoter 
-              data={{"age":"55",
-              "address":"aldfjkadjflaks",
-              "money":"5000",
-              "voterId":"voter id",
-              "created":{"seconds":1643621517,"nanoseconds":24000000},
-              "visited":true,
-              "street":"kadfka kadf street",
-              "name":"name",
-              "sex":"male",
-              "headName":"husband",
-              "phone":"9493943903409"}}
-              id={"9Y2gLOeHpBL2foZi4NIE"} />
-          </Route> */}
+          <Route path="/filter" element={<CheckedFilter />} />
         </Routes>
-      </div>
     </Router>
   );
 }
