@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import "./css/style.css";
@@ -17,6 +17,7 @@ export default function UpdateVoter({
   const [phone, setPhone] = useState(data.phone || "");
   const [checked, setChecked] = useState(data.checked || "");
   const [visited, setVisited] = useState(data.visited);
+  const [holded, setHolded] = useState(data.holded);
 
   /* function to update firestore */
   const handleUpdate = async (e) => {
@@ -33,9 +34,10 @@ export default function UpdateVoter({
         phone: phone,
         checked: checked,
         visited: visited,
+        holded: holded,
       });
       handleflag(false);
-      alert("Updated")
+      alert("Updated");
     } catch (err) {
       alert(err);
       handleflag(false);
@@ -44,7 +46,6 @@ export default function UpdateVoter({
 
   return (
     <div>
-    
       <div class="row align-items-stretch justify-content-center no-gutters">
         <div class="col-lg-8">
           <div class="form h-100 contact-wrap p-5">
@@ -58,7 +59,7 @@ export default function UpdateVoter({
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                  வாக்காளர் எண் *
+                    வாக்காளர் எண் *
                   </label>
                   <input
                     type="text"
@@ -74,7 +75,7 @@ export default function UpdateVoter({
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                  வாக்காளர் பெயர் *
+                    வாக்காளர் பெயர் *
                   </label>
                   <input
                     type="text"
@@ -90,7 +91,7 @@ export default function UpdateVoter({
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                  குடும்ப தலைவரின் பெயர் *
+                    குடும்ப தலைவரின் பெயர் *
                   </label>
                   <input
                     type="text"
@@ -106,7 +107,7 @@ export default function UpdateVoter({
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                  வாக்காளர் வயது *
+                    வாக்காளர் வயது *
                   </label>
                   <input
                     type="numeric"
@@ -122,9 +123,13 @@ export default function UpdateVoter({
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                  வாக்காளர் பாலினம் *
+                    வாக்காளர் பாலினம் *
                   </label>
-                  <select class="form-control" onChange={(e) => setSex(e.target.value)} value={sex}>
+                  <select
+                    class="form-control"
+                    onChange={(e) => setSex(e.target.value)}
+                    value={sex}
+                  >
                     <option value="ஆண்">ஆண்</option>
                     <option value="பெண்">பெண்</option>
                     <option value="மற்றவை">மற்றவை</option>
@@ -135,29 +140,33 @@ export default function UpdateVoter({
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                  வாக்காளர் தெரு *
+                    வாக்காளர் தெரு *
                   </label>
-                  <select class="form-control" onChange={(e) => setStreet(e.target.value)} value={street}>
-                  <option value="0">கந்தசாமி சந்து</option>
-                  <option value="1">கரிகால் சோழன் வீதி</option>
-                  <option value="2">ஆரோக்கியநாதர் வீதி</option>
-                  <option value="3">குப்புசாமி வீதி</option>
-                  <option value="4">வ.உ.சி வீதி</option>
-                  <option value="5">கட்டபொம்மன் வீதி</option>
-                  <option value="6">ஆறுமுகம் வீதி</option>
-                  <option value="7">முத்துசாமி வீதி</option>
-                  <option value="8">குப்பாண்டவர் வீதி</option>
-                  <option value="9">சுப்ரமணியன் வீதி</option>
+                  <select
+                    class="form-control"
+                    onChange={(e) => setStreet(e.target.value)}
+                    value={street}
+                  >
+                    <option value="0">கந்தசாமி சந்து</option>
+                    <option value="1">கரிகால் சோழன் வீதி</option>
+                    <option value="2">ஆரோக்கியநாதர் வீதி</option>
+                    <option value="3">குப்புசாமி வீதி</option>
+                    <option value="4">வ.உ.சி வீதி</option>
+                    <option value="5">கட்டபொம்மன் வீதி</option>
+                    <option value="6">ஆறுமுகம் வீதி</option>
+                    <option value="7">முத்துசாமி வீதி</option>
+                    <option value="8">குப்பாண்டவர் வீதி</option>
+                    <option value="9">சுப்ரமணியன் வீதி</option>
                   </select>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                  வாக்காளர் குடும்ப எண் *
+                    வாக்காளர் குடும்ப எண் *
                   </label>
                   <input
-                    type="tel"
+                    type="text"
                     name="phone"
                     onChange={(e) => setPhone(e.target.value)}
                     value={phone}
@@ -180,7 +189,7 @@ export default function UpdateVoter({
                     class="form-check-input"
                   />
                   <label for="" class="form-check-label">
-                  வழங்கியுள்ளது *
+                    வழங்கியுள்ளது *
                   </label>
                 </div>
                 <div class="col-md-3"></div>
@@ -197,10 +206,28 @@ export default function UpdateVoter({
                     class="form-check-input"
                   />
                   <label for="" class="form-check-label">
-                  பார்வையிட்டது *
+                    பார்வையிட்டது *
                   </label>
                 </div>
               </div>
+
+              <div class="row">
+                <div class="col-md-3"></div>
+                <div style={{ display: "flex" }} class="form-group mb-3">
+                  <input
+                    type="checkbox"
+                    name="holded"
+                    onChange={(e) => setHolded(e.target.checked)}
+                    checked={holded}
+                    placeholder="Enter checked provided"
+                    class="form-check-input"
+                  />
+                  <label for="" class="form-check-label">
+                    பிடிப்பு *
+                  </label>
+                </div>
+              </div>
+
               <br />
               <div class="row">
                 <div class="col"></div>
