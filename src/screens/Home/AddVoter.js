@@ -14,6 +14,7 @@ export default function AddVoter() {
   const [phone, setPhone] = useState("");
   const [checked, setChecked] = useState(false);
   const [visited, setVisited] = useState(false);
+  const [holded, setHolded] = useState(false);
 
   /* function to clear fields */
   const clearFields = () => {
@@ -26,6 +27,7 @@ export default function AddVoter() {
     setPhone("");
     setChecked("");
     setVisited("");
+    setHolded("");
   };
 
   /* function to add new task to firestore */
@@ -42,6 +44,7 @@ export default function AddVoter() {
         phone: phone,
         checked: checked,
         visited: visited,
+        holded:holded,
         created: Timestamp.now(),
       });
       clearFields();
@@ -169,7 +172,7 @@ export default function AddVoter() {
                   வாக்காளர் குடும்ப எண் *
                   </label>
                   <input
-                    type="number"
+                    type="text"
                     name="phone"
                     onChange={(e) => setPhone(e.target.value)}
                     value={phone}
@@ -213,6 +216,25 @@ export default function AddVoter() {
                   </label>
                 </div>
               </div>
+              
+              <div class="row">
+                <div class="col-md-3"></div>
+                <div style={{ display: "flex" }} class="form-group mb-3">
+                  <input
+                    type="checkbox"
+                    name="holded"
+                    onChange={(e) => setHolded(e.target.checked)}
+                    checked={holded}
+                    defaultChecked={false}
+                    class="form-check-input"
+                  />
+                  <label for="" class="form-check-label">
+                  பிடிப்பு *
+                  </label>
+                </div>
+
+              </div>
+
               <br />
               <div class="row">
                 <div class="col"></div>

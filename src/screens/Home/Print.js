@@ -10,7 +10,7 @@ import {
 import { db } from "../../firebase";
 import UpdateVoter from "./UpdateVoter";
 import "./css/style.css";
-import { Button, Col, Container, Row, Table } from "react-bootstrap";
+import { Button, Col, Row, Table} from "react-bootstrap";
 
 export default function AllVoters({ DATA = null, streetVisible = true }) {
   const [voters, setVoters] = useState();
@@ -90,11 +90,12 @@ export default function AllVoters({ DATA = null, streetVisible = true }) {
   ];
 
   return (
-    <Container>
+    <div className="mx-2">
       {flag && <UpdateVoter data={data} id={id} handleflag={setFlag} />}
       {streetVisible && (
         <Row>
           <Col>
+            
             <select
               class="form-control"
               onChange={(e) => {
@@ -117,11 +118,12 @@ export default function AllVoters({ DATA = null, streetVisible = true }) {
             </select>
           </Col>
           <Button variant="warning" onClick={()=>resetFilter()}>Reset</Button>
+          <Button variant="dark" onClick={()=>window.print()}>Print</Button>
         </Row>
       )}
       <Table striped bordered hover>
         <thead>
-          <tr>
+          <tr class="col-lg-12" >
             <th>#</th>
             <th>வாக்காளர் எண்</th>
             <th>பெயர்</th>
@@ -132,14 +134,15 @@ export default function AllVoters({ DATA = null, streetVisible = true }) {
             <th>குடும்ப எண்</th>
             <th>வழங்கியுள்ளது</th>
             <th>பார்வையிட்டது</th>
+            <th>பிடிப்பு</th>
             <th>மாற்று</th>
             <th>அகற்று</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody >
           {filter
             ? filter.map((item, index) => (
-                <tr>
+                <tr class="col">
                   <td>{index}</td>
                   <td>{item.data.voterId}</td>
                   <td>{item.data.name}</td>
@@ -150,6 +153,7 @@ export default function AllVoters({ DATA = null, streetVisible = true }) {
                   <td>{item.data.phone}</td>
                   <td>{item.data.checked ? "ஆம்" : "இல்லை"}</td>
                   <td>{item.data.visited ? "ஆம்" : "இல்லை"}</td>
+                  <td>{item.data.holded ? "ஆம்" : "இல்லை"}</td>
                   <td>
                     <Button
                       variant="info"
@@ -175,6 +179,6 @@ export default function AllVoters({ DATA = null, streetVisible = true }) {
             : null}
         </tbody>
       </Table>
-    </Container>
+    </div>
   );
 }

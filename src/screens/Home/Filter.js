@@ -4,9 +4,8 @@ import {
   query,
   orderBy,
   onSnapshot,
-  doc,
-  deleteDoc,
 } from "firebase/firestore";
+import { Button, Container } from "react-bootstrap";
 import { db } from "../../firebase";
 import "./css/style.css";
 import AllVoters from "./Print";
@@ -62,8 +61,8 @@ const CheckedFilter = () => {
 
   return (
     <div>
-      <div class="row">
-        <div class="col-lg-2"></div>
+      <Container>
+        
         <div class="col-lg-8">
           <form class="" id="contactForm" name="addTask" onSubmit={handleReset}>
             <div class="row">
@@ -152,17 +151,17 @@ const CheckedFilter = () => {
             </div>
             <div class="row justify-content-center">
               <div class="col-md-5 form-group text-center">
-                <input
-                  type="submit"
-                  value="reset"
-                  class="btn btn-block btn-danger rounded-0 py-2 px-4"
-                />
+                <Button className="py-2 px-4 mr-2" variant="danger" type="submit" > Reset</Button>
+                <Button className="py-2 px-4 ml-2" variant="dark" onClick={()=>window.print()}>Print</Button>
                 <span class="submitting"></span>
               </div>
             </div>
           </form>
-        </div>
+          <div>
       </div>
+
+        </div>
+      </Container>
       <AllVoters DATA={filter || voters} streetVisible={false} />
     </div>
   );
