@@ -115,6 +115,9 @@ export default function AllVoters({ DATA = null, streetVisible = true }) {
               <option value="7">முத்துசாமி வீதி</option>
               <option value="8">குப்பாண்டவர் வீதி</option>
               <option value="9">சுப்ரமணியன் வீதி</option>
+              <option value="10">ராஜா மில் ரோடு</option>
+              <option value="11">ஜுபிலி கிணறு வீதி</option>
+              <option value="12">அப்துல் கலாம் ஆசாத் வீதி</option>
             </select>
           </Col>
           <Button variant="warning" onClick={()=>resetFilter()}>Reset</Button>
