@@ -4,7 +4,7 @@ import AddVoter from "./screens/Home/AddVoter";
 import AllVoter from "./screens/Home/Print";
 import CheckedFilter from "./screens/Home/Filter";
 
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import Login from "./screens/Home/LOGIN";
 import { useEffect, useState } from "react";
 
@@ -36,6 +36,9 @@ function App() {
             <Nav.Link as={Link} to="/filter">
               Filter
             </Nav.Link>
+            <Button variant="danger" type="submit" onClick={()=>{localStorage.removeItem("loggedin"); window.location.reload(false);}}>
+              Logout
+            </Button>
           </Nav>
         </Container>
       </Navbar>

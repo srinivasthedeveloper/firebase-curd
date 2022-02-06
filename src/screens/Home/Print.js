@@ -52,7 +52,7 @@ export default function AllVoters({ DATA = null, streetVisible = true }) {
     const voterRef = doc(db, "voter", id);
     try {
       await deleteDoc(voterRef);
-      alert("deleted");
+      window.location.reload(false);
     } catch (err) {
       alert(err);
     }

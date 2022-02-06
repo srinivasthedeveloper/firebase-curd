@@ -100,8 +100,8 @@ const CheckedFilter = () => {
                   type="tel"
                   name="phone"
                   onChange={(e) => {
-                    setPhone(e.target.value);
-                    handlePhone("phone", e.target.value);
+                    setPhone(e.target.value.toLowerCase());
+                    handlePhone("phone", e.target.value.toLowerCase());
                   }}
                   value={phone}
                   placeholder="Enter Voter family number"

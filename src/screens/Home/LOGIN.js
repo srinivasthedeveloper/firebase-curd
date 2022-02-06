@@ -14,7 +14,7 @@ function Login() {
 
   return (
     <Container>
-      <Card className="col-lg-8">
+      <Card className="col">
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
