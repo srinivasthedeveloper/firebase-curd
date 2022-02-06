@@ -192,12 +192,13 @@ export default function AddVoter() {
                   <input
                     type="checkbox"
                     name="checked"
+                    id="checkedBox"
                     onChange={(e) => setChecked(e.target.checked)}
                     value={checked}
                     placeholder="Enter checked provided"
                     class="form-check-input"
                   />
-                  <label for="" class="form-check-label">
+                  <label htmlFor="checkedBox" class="form-check-label">
                   வழங்கியுள்ளது *
                   </label>
                 </div>
@@ -214,7 +215,7 @@ export default function AddVoter() {
                     defaultChecked={false}
                     class="form-check-input"
                   />
-                  <label for="" class="form-check-label">
+                  <label htmlFor="visitBox" class="form-check-label">
                   பார்வையிட்டது *
                   </label>
                 </div>
@@ -226,12 +227,13 @@ export default function AddVoter() {
                   <input
                     type="checkbox"
                     name="holded"
+                    id="holdBox"
                     onChange={(e) => setHolded(e.target.checked)}
                     checked={holded}
                     defaultChecked={false}
                     class="form-check-input"
                   />
-                  <label for="" class="form-check-label">
+                  <label htmlFor="holdBox" class="form-check-label">
                   பிடிப்பு *
                   </label>
                 </div>

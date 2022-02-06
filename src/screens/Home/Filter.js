@@ -119,6 +119,7 @@ const CheckedFilter = () => {
                 <input
                   type="checkbox"
                   name="checked"
+                  id="checkedBox"
                   onChange={(e) => {
                     setChecked(e.target.checked);
                     handleFilter("checked", e.target.checked);
@@ -128,7 +129,7 @@ const CheckedFilter = () => {
                   placeholder="Enter checked provided"
                   class="form-check-input"
                 />
-                <label for="" class="form-check-label">
+                <label htmlFor="checkedBox" class="form-check-label">
                 வழங்கியுள்ளது
                 </label>
               </div>
@@ -145,7 +146,7 @@ const CheckedFilter = () => {
                   defaultChecked={false}
                   class="form-check-input"
                 />
-                <label for="" class="form-check-label">
+                <label htmlFor="visitBox" class="form-check-label">
                 பார்வையிட்டது
                 </label>
               </div>

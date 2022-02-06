@@ -15,7 +15,7 @@ export default function UpdateVoter({
   const [sex, setSex] = useState(data.sex || "");
   const [street, setStreet] = useState(data.street || "");
   const [phone, setPhone] = useState(data.phone || "");
-  const [checked, setChecked] = useState(data.checked || "");
+  const [checked, setChecked] = useState(data.checked);
   const [visited, setVisited] = useState(data.visited);
   const [holded, setHolded] = useState(data.holded);
 
@@ -186,12 +186,13 @@ export default function UpdateVoter({
                   <input
                     type="checkbox"
                     name="checked"
+                    id="checkedBox"
                     onChange={(e) => setChecked(e.target.checked)}
                     value={checked}
                     placeholder="Enter checked provided"
                     class="form-check-input"
                   />
-                  <label for="" class="form-check-label">
+                  <label htmlFor="checkedBox" class="form-check-label">
                     வழங்கியுள்ளது *
                   </label>
                 </div>
@@ -208,7 +209,7 @@ export default function UpdateVoter({
                     defaultChecked={false}
                     class="form-check-input"
                   />
-                  <label for="" class="form-check-label">
+                  <label htmlFor="visitBox" class="form-check-label">
                     பார்வையிட்டது *
                   </label>
                 </div>
@@ -220,12 +221,13 @@ export default function UpdateVoter({
                   <input
                     type="checkbox"
                     name="holded"
+                    id="holdBox"
                     onChange={(e) => setHolded(e.target.checked)}
                     checked={holded}
                     placeholder="Enter checked provided"
                     class="form-check-input"
                   />
-                  <label for="" class="form-check-label">
+                  <label htmlFor="holdBox" class="form-check-label">
                     பிடிப்பு *
                   </label>
                 </div>
