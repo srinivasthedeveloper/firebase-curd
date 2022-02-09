@@ -246,7 +246,7 @@ export default function AddVoter() {
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                  வாக்காளர் குடும்ப எண்*
+                  வாக்காளர் குடும்ப எண் *
                   </label>
                   <input
                     type="text"
@@ -266,12 +266,13 @@ export default function AddVoter() {
                   <input
                     type="checkbox"
                     name="checked"
+                    id="checkedBox"
                     onChange={(e) => setChecked(e.target.checked)}
                     value={checked}
                     placeholder="Enter checked provided"
                     class="form-check-input"
                   />
-                  <label for="" class="form-check-label">
+                  <label htmlFor="checkedBox" class="form-check-label">
                   வழங்கியுள்ளது *
                   </label>
                 </div>
@@ -288,7 +289,7 @@ export default function AddVoter() {
                     defaultChecked={false}
                     class="form-check-input"
                   />
-                  <label for="" class="form-check-label">
+                  <label htmlFor="visitBox" class="form-check-label">
                   பார்வையிட்டது *
                   </label>
                 </div>
@@ -302,10 +303,11 @@ export default function AddVoter() {
                     name="polled"
                     onChange={(e) => setPolled(e.target.checked)}
                     checked={polled}
+                    id="pollBox"
                     defaultChecked={false}
                     class="form-check-input"
                   />
-                  <label for="" class="form-check-label">
+                  <label htmlFor="pollBox" class="form-check-label">
                   வாக்களித்தார் *
                   </label>
                 </div>

@@ -260,7 +260,8 @@ export default function UpdateVoter({
                     name="checked"
                     id="checkedBox"
                     onChange={(e) => setChecked(e.target.checked)}
-                    value={checked}
+                    checked={checked}
+                    defaultChecked={false}
                     placeholder="Enter checked provided"
                     class="form-check-input"
                   />
