@@ -5,6 +5,7 @@ import { collection, addDoc, Timestamp } from "firebase/firestore";
 import "./css/style.css";
 
 export default function AddVoter() {
+  const [voterSNo, setVoterSNo] = useState("");
   const [voterId, setVoterId] = useState("");
   const [name, setName] = useState("");
   const [headName, setHeadName] = useState("");
@@ -12,9 +13,12 @@ export default function AddVoter() {
   const [sex, setSex] = useState("ஆண்");
   const [street, setStreet] = useState("1");
   const [phone, setPhone] = useState("");
+  const [mobileNo, setMobileNo] = useState("");
+  const [address, setAddress] = useState("");
+  const [location, SetLocation] = useState("உள்ளே");
   const [checked, setChecked] = useState(false);
   const [visited, setVisited] = useState(false);
-  const [holded, setHolded] = useState(false);
+  const [polled, setPolled] = useState(false);
 
   /* function to clear fields */
   const clearFields = () => {
@@ -27,7 +31,11 @@ export default function AddVoter() {
     setPhone("");
     setChecked("");
     setVisited("");
-    setHolded("");
+    setPolled("");
+    SetLocation("");
+    setVoterSNo();
+    setMobileNo();
+    setAddress();
   };
 
   /* function to add new task to firestore */
@@ -35,6 +43,7 @@ export default function AddVoter() {
     e.preventDefault();
     try {
       await addDoc(collection(db, "voter"), {
+        voterSNo:voterSNo,
         voterId: voterId,
         name: name,
         headName: headName,
@@ -42,9 +51,12 @@ export default function AddVoter() {
         sex: sex,
         street: street,
         phone: phone,
+        mobileNo: mobileNo,
+        address: address,
+        location:location,
         checked: checked,
         visited: visited,
-        holded:holded,
+        polled:polled,
         created: Timestamp.now(),
       });
       clearFields();
@@ -66,6 +78,22 @@ export default function AddVoter() {
               id="addvoter"
               name="addvoter"
             >
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">
+                  வா எண் *
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="Voter S No"
+                    onChange={(e) => setVoterSNo(e.target.value)}
+                    value={voterSNo}
+                    placeholder="Enter Voter Serial number"
+                    required
+                  />
+                </div>
+              </div>
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
@@ -137,6 +165,52 @@ export default function AddVoter() {
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
+                  தொலைபேசி எண் *
+                  </label>
+                  <input
+                    type="number"
+                    name="mobile number"
+                    onChange={(e) => setMobileNo(e.target.value)}
+                    value={mobileNo}
+                    placeholder="Enter Voter Phone Number"
+                    class="form-control"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">
+                    தற்போதைய முகவரி *
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="Voter Address Name"
+                    onChange={(e) => setAddress(e.target.value)}
+                    value={address}
+                    placeholder="Enter Voter Address"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">
+                    வாக்காளர் இடம் *
+                  </label>
+                  <select class="form-control" onChange={(e) => SetLocation(e.target.value)} value={location}>
+                    <option value="உள்ளே">உள்ளே</option>
+                    <option value="வெளியே">வெளியே</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">
                   வாக்காளர் பாலினம் *
                   </label>
                   <select class="form-control" onChange={(e) => setSex(e.target.value)} value={sex}>
@@ -172,14 +246,14 @@ export default function AddVoter() {
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
-                  வாக்காளர் குடும்ப எண் *
+                  வாக்காளர் குடும்ப எண்*
                   </label>
                   <input
                     type="text"
                     name="phone"
-                    onChange={(e) => setPhone(e.target.value.toLowerCase())}
+                    onChange={(e) => setPhone(e.target.value)}
                     value={phone}
-                    placeholder="Enter Voter family number"
+                    placeholder="Enter Voter family ID"
                     class="form-control"
                     required
                   />
@@ -192,13 +266,12 @@ export default function AddVoter() {
                   <input
                     type="checkbox"
                     name="checked"
-                    id="checkedBox"
                     onChange={(e) => setChecked(e.target.checked)}
                     value={checked}
                     placeholder="Enter checked provided"
                     class="form-check-input"
                   />
-                  <label htmlFor="checkedBox" class="form-check-label">
+                  <label for="" class="form-check-label">
                   வழங்கியுள்ளது *
                   </label>
                 </div>
@@ -215,7 +288,7 @@ export default function AddVoter() {
                     defaultChecked={false}
                     class="form-check-input"
                   />
-                  <label htmlFor="visitBox" class="form-check-label">
+                  <label for="" class="form-check-label">
                   பார்வையிட்டது *
                   </label>
                 </div>
@@ -226,15 +299,14 @@ export default function AddVoter() {
                 <div style={{ display: "flex" }} class="form-group mb-3">
                   <input
                     type="checkbox"
-                    name="holded"
-                    id="holdBox"
-                    onChange={(e) => setHolded(e.target.checked)}
-                    checked={holded}
+                    name="polled"
+                    onChange={(e) => setPolled(e.target.checked)}
+                    checked={polled}
                     defaultChecked={false}
                     class="form-check-input"
                   />
-                  <label htmlFor="holdBox" class="form-check-label">
-                  பிடிப்பு *
+                  <label for="" class="form-check-label">
+                  வாக்களித்தார் *
                   </label>
                 </div>
 
