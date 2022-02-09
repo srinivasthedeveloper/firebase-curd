@@ -19,6 +19,7 @@ export default function UpdateVoter({
   const [phone, setPhone] = useState(data.phone || "");
   const [mobileNo, setMobileNo] = useState(data.mobileNo || "");
   const [address, setAddress] = useState(data.address || "");
+  const [location, SetLocation] = useState(data.location | "");
   const [checked, setChecked] = useState(data.checked);
   const [visited, setVisited] = useState(data.visited);
   const [polled, setPolled] = useState(data.polled);
@@ -38,7 +39,8 @@ export default function UpdateVoter({
         street: street,
         phone: phone,
         mobileNo: mobileNo,
-        address:address,
+        address: address,
+        location:location,
         checked: checked,
         visited: visited,
         polled: polled,
@@ -175,6 +177,18 @@ export default function UpdateVoter({
                     placeholder="Enter Voter Address"
                     required
                   />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">
+                    வாக்காளர் இடம் *
+                  </label>
+                  <select class="form-control" onChange={(e) => SetLocation(e.target.value)} value={location}>
+                    <option value="உள்ளே">உள்ளே</option>
+                    <option value="வெளியே">வெளியே</option>
+                  </select>
                 </div>
               </div>
 

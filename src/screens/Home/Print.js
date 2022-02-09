@@ -134,6 +134,7 @@ export default function AllVoters({ DATA = null, streetVisible = true }) {
             <th>வயது</th>
             <th>தொலைபேசி எண்</th>
             <th>தற்போதைய முகவரி</th>
+            <th>வாக்காளர் இடம்</th>
             <th>பாலினம்</th>
             <th>தெரு</th>
             <th>குடும்ப எண்</th>
@@ -155,6 +156,7 @@ export default function AllVoters({ DATA = null, streetVisible = true }) {
                   <td>{item.data.age}</td>
                   <td>{item.data.mobileNo}</td>
                   <td>{item.data.address}</td>
+                  <td>{item.data.location}</td>
                   <td>{item.data.sex}</td>
                   <td>{streetName[item.data.street]}</td>
                   <td>{item.data.phone}</td>
