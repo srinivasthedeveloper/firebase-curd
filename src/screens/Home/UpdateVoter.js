@@ -8,6 +8,8 @@ export default function UpdateVoter({
   id = "",
   handleflag = () => {},
 }) {
+
+  const [voterSNo, setVoterSNo] = useState(data.voterSNo || "");
   const [voterId, setVoterId] = useState(data.voterId || "");
   const [name, setName] = useState(data.name || "");
   const [headName, setHeadName] = useState(data.headName || "");
@@ -15,9 +17,11 @@ export default function UpdateVoter({
   const [sex, setSex] = useState(data.sex || "");
   const [street, setStreet] = useState(data.street || "");
   const [phone, setPhone] = useState(data.phone || "");
+  const [mobileNo, setMobileNo] = useState(data.mobileNo || "");
+  const [address, setAddress] = useState(data.address || "");
   const [checked, setChecked] = useState(data.checked);
   const [visited, setVisited] = useState(data.visited);
-  const [holded, setHolded] = useState(data.holded);
+  const [polled, setPolled] = useState(data.polled);
 
   /* function to update firestore */
   const handleUpdate = async (e) => {
@@ -25,6 +29,7 @@ export default function UpdateVoter({
     const voterRef = doc(db, "voter", id);
     try {
       await updateDoc(voterRef, {
+        voterSNo:voterSNo,
         voterId: voterId,
         name: name,
         headName: headName,
@@ -32,9 +37,11 @@ export default function UpdateVoter({
         sex: sex,
         street: street,
         phone: phone,
+        mobileNo: mobileNo,
+        address:address,
         checked: checked,
         visited: visited,
-        holded: holded,
+        polled: polled,
       });
       handleflag(false);
       alert("Updated");
@@ -56,6 +63,23 @@ export default function UpdateVoter({
               id="addvoter"
               name="addvoter"
             >
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">
+                  வா எண் *
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="Voter S No"
+                    onChange={(e) => setVoterSNo(e.target.value)}
+                    value={voterSNo}
+                    placeholder="Enter Voter Serial number"
+                    required
+                  />
+                </div>
+              </div>
+
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
@@ -121,6 +145,40 @@ export default function UpdateVoter({
               </div>
 
               <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">
+                  தொலைபேசி எண் *
+                  </label>
+                  <input
+                    type="number"
+                    name="mobile number"
+                    onChange={(e) => setMobileNo(e.target.value)}
+                    value={mobileNo}
+                    placeholder="Enter Voter Phone Number"
+                    class="form-control"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">
+                    தற்போதைய முகவரி *
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="Voter Address Name"
+                    onChange={(e) => setAddress(e.target.value)}
+                    value={address}
+                    placeholder="Enter Voter Address"
+                    required
+                  />
+                </div>
+              </div>
+
+            <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="" class="col-form-label">
                     வாக்காளர் பாலினம் *
@@ -220,15 +278,15 @@ export default function UpdateVoter({
                 <div style={{ display: "flex" }} class="form-group mb-3">
                   <input
                     type="checkbox"
-                    name="holded"
-                    id="holdBox"
-                    onChange={(e) => setHolded(e.target.checked)}
-                    checked={holded}
+                    name="polled"
+                    id="polledBox"
+                    onChange={(e) => setPolled(e.target.checked)}
+                    checked={polled}
                     placeholder="Enter checked provided"
                     class="form-check-input"
                   />
-                  <label htmlFor="holdBox" class="form-check-label">
-                    பிடிப்பு *
+                  <label htmlFor="polledBox" class="form-check-label">
+                  வாக்களித்தார் *
                   </label>
                 </div>
               </div>

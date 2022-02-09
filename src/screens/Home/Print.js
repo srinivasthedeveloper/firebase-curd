@@ -127,17 +127,19 @@ export default function AllVoters({ DATA = null, streetVisible = true }) {
       <Table striped bordered hover>
         <thead>
           <tr class="col-lg-12" >
-            <th>#</th>
+            <th>வா எண்</th>
             <th>வாக்காளர் எண்</th>
             <th>பெயர்</th>
             <th>குடும்ப தலைவரின் பெயர்</th>
             <th>வயது</th>
+            <th>தொலைபேசி எண்</th>
+            <th>தற்போதைய முகவரி</th>
             <th>பாலினம்</th>
             <th>தெரு</th>
             <th>குடும்ப எண்</th>
             <th>வழங்கியுள்ளது</th>
             <th>பார்வையிட்டது</th>
-            <th>பிடிப்பு</th>
+            <th>வாக்களித்தார்</th>
             <th>மாற்று</th>
             <th>அகற்று</th>
           </tr>
@@ -146,11 +148,13 @@ export default function AllVoters({ DATA = null, streetVisible = true }) {
           {filter
             ? filter.map((item, index) => (
                 <tr class="col">
-                  <td>{index}</td>
+                  <td>{item.data.voterSNo}</td>
                   <td>{item.data.voterId}</td>
                   <td>{item.data.name}</td>
                   <td>{item.data.headName}</td>
                   <td>{item.data.age}</td>
+                  <td>{item.data.mobileNo}</td>
+                  <td>{item.data.address}</td>
                   <td>{item.data.sex}</td>
                   <td>{streetName[item.data.street]}</td>
                   <td>{item.data.phone}</td>
