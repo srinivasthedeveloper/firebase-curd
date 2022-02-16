@@ -243,7 +243,7 @@ export default function UpdateVoter({
                   <input
                     type="text"
                     name="phone"
-                    onChange={(e) => setPhone(e.target.value.toLowerCase())}
+                    onChange={(e) => setPhone(e.target.value.toUpperCase())}
                     value={phone}
                     placeholder="Enter Voter family number"
                     class="form-control"

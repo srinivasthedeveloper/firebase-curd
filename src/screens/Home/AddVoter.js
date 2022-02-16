@@ -251,7 +251,7 @@ export default function AddVoter() {
                   <input
                     type="text"
                     name="phone"
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => setPhone(e.target.value.toUpperCase())}
                     value={phone}
                     placeholder="Enter Voter family ID"
                     class="form-control"
