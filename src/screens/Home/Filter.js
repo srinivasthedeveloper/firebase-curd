@@ -11,6 +11,7 @@ import "./css/style.css";
 import AllVoters from "./Print";
 
 const CheckedFilter = () => {
+  const [voterSNo, setvoterSNo] = useState();
   const [voters, setVoters] = useState();
   const [filter, setFilter] = useState();
   const [street, setStreet] = useState("");
@@ -40,6 +41,11 @@ const CheckedFilter = () => {
     setFilter(temp);
   };
 
+  const handlevoterSNo = (key, value) => {
+    const temp = voters.filter((item) => item.data[key].includes(value));
+    setFilter(temp);
+  };
+
   const handlePhone = (key, value) => {
     const temp = voters.filter((item) => item.data[key].includes(value));
     setFilter(temp);
@@ -65,6 +71,24 @@ const CheckedFilter = () => {
         
         <div class="col-lg-8">
           <form class="" id="contactForm" name="addTask" onSubmit={handleReset}>
+          <div class="row">
+              <div class="col-md-12 form-group mb-3">
+                <label for="" class="col-form-label">
+                வா எண்
+                </label>
+                <input
+                  type="text"
+                  name="voterSNo"
+                  onChange={(e) => {
+                    setvoterSNo(e.target.value);
+                    handlevoterSNo("voterSNo", e.target.value);
+                  }}
+                  value={voterSNo}
+                  placeholder="Enter Voter  Serial number"
+                  class="form-control"
+                />
+              </div>
+            </div>
             <div class="row">
               <div class="col-md-12 form-group mb-3">
                 <label for="" class="col-form-label">
@@ -101,11 +125,11 @@ const CheckedFilter = () => {
                 வாக்காளர் குடும்ப எண்
                 </label>
                 <input
-                  type="tel"
+                  type="text"
                   name="phone"
                   onChange={(e) => {
-                    setPhone(e.target.value.toLowerCase());
-                    handlePhone("phone", e.target.value.toLowerCase());
+                    setPhone(e.target.value.toUpperCase());
+                    handlePhone("phone", e.target.value.toUpperCase());
                   }}
                   value={phone}
                   placeholder="Enter Voter family number"
